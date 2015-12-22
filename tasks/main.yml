@@ -1,0 +1,30 @@
+---
+# tasks file for atlas-repo
+- name: Remove the default epel repo
+  file:
+    path: "/etc/yum.repos.d/epel.repo"
+    state: absent
+
+- name: Add Atlas epel repo
+  template:
+    src: "{{ epel_atlas_repo }}"
+    dest: /etc/yum.repos.d/epel.repo
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable centos atlas repo
+  template:
+    src: "{{ centos_atlas_repo }}"
+    dest: /etc/yum.repos.d/centos_atlas.repo
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable cim atlas repo
+  template:
+    src: "{{ cim_atlas_repo }}"
+    dest: /etc/yum.repos.d/cim_atlas.repo
+    owner: root
+    group: root
+    mode: "0644"
